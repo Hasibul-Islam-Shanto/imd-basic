@@ -1,6 +1,5 @@
 import fetchData from "@/api/fetchData";
 import Card from "@/components/Card";
-import { useSearchParams } from "next/navigation";
 import React from "react";
 
 type PropsType = {

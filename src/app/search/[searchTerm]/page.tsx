@@ -1,22 +1,17 @@
-import fetchData from "@/api/fetchData";
 import Card from "@/components/Card";
-import { useSearchParams } from "next/navigation";
 import React from "react";
 
-type PropsType = {
-  searchParams: {
-    genre: string;
-  };
-};
-const Home = async ({ searchParams }: PropsType) => {
-  const genre = searchParams.genre || "fetchTrending";
-  const res = await fetchData(genre);
+const SearchResults = async ({
+  params,
+}: {
+  params: { searchTerm: string };
+}) => {
+  const seachTerm = params.searchTerm;
+  const res = await fetch(
+    `https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY}&query=${seachTerm}&language=en-US&page=1&include_adult=false`
+  );
   const data = await res.json();
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
   const results = data.results;
-
   return (
     <>
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5 p-5">
@@ -30,4 +25,4 @@ const Home = async ({ searchParams }: PropsType) => {
   );
 };
 
-export default Home;
+export default SearchResults;

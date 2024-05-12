@@ -6,9 +6,11 @@ import { FiThumbsUp } from "react-icons/fi";
 const Card = (movie: any) => {
   return (
     <div className="group cursor-pointer sm:hover:shadow-slate-400 sm:shadow-md rounded-lg sm:border sm:border-slate-400 sm:m-2 transition-shadow duration-200">
-      <Link href={`/movie/${movie.id}`} className="flex flex-col">
+      <Link href={`/movie/${movie.movie.id}`} className="flex flex-col">
         <Image
-          src={`https://image.tmdb.org/t/p/original/${movie.movie.poster_path}`}
+          src={`https://image.tmdb.org/t/p/original/${
+            movie.movie.backdrop_path || movie.movie.poster_path
+          }`}
           width={500}
           height={300}
           alt="movie poster"

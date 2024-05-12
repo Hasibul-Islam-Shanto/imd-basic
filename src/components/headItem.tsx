@@ -10,7 +10,7 @@ const HeadItem = ({ title, path }: PropsType) => {
   const searchParam = useSearchParams();
   const genre = searchParam.get("genre");
   return (
-    <Suspense>
+    <Suspense fallback={<div>Loading....</div>}>
       <Link
         href={`/?genre=${path}`}
         className={`text-lg font-semibold ${
